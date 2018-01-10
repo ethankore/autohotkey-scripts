@@ -8,7 +8,7 @@ Return
 Run c:\Users\%A_ComputerName%\Desktop
 Return
 
-; CTRL+ALT+X Run Cmder
+; CTRL+ALT+X - Run Cmder
 ^!X::
 Run C:\cmdr\Cmder.exe
 Return
