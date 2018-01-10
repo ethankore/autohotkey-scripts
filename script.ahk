@@ -45,10 +45,10 @@ SetVolume(whatvolume){
 }
 
 ; Alt+tilde - Move window from current monitor to the next (replace 'Right' with 'Left' to change the direction).
-; To make it run properly, make sure your keyboard is using the English layout when enabling the script
+; To make it run properly, make sure your keyboard is using the English layout when enabl~~~~ing the script
 !`::
 Send {LWin down}{LShift down}{Right down}
-Sleep 0
+Sleep 0 ; Yes, this is necessary
 Send {LWin up}{LShift up}{Right up}
 return
 
