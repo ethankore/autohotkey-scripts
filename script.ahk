@@ -44,7 +44,7 @@ SetVolume(whatvolume){
     soundplay, *-1
 }
 
-; Alt+` (tilde) - Move window from current monitor to the next (replace 'Right' with 'Left' to change the direction)
+; Alt+` (tilde) - Move window from current monitor to the next (replace Right with Left to change the direction)
 !`::
 Send {LWin down}{LShift down}{Right down}
 Sleep 100
