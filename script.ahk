@@ -5,7 +5,7 @@ Return
 
 ; CTRL+ALT+D - Open desktop directory
 ^!D::
-Run c:\Users\%A_ComputerName%\Desktop
+Run c:\Users\Ard\Desktop
 Return
 
 ; CTRL+ALT+X - Run Cmder
@@ -44,6 +44,7 @@ SetVolume(whatvolume){
     soundplay, *-1
 }
 
+; Windows 10- Move window to next monitor
 ; Alt+tilde - Move window from current monitor to the next (replace 'Right' with 'Left' to change the direction).
 ; To make it run properly, make sure your keyboard is using the English layout when enabling the script
 !`::
@@ -52,9 +53,50 @@ Sleep 0 ; Yes, this is necessary
 Send {LWin up}{LShift up}{Right up}
 return
 
-; Type :shrug: and you'll get ¯\_(ツ)_/¯
-:B0:`:shrug::
-	if (A_EndChar == ":") {
-		SendInput, {BS 7}¯\_(ツ)_/¯
+; Type /shrug and you'll get ¯\_(ツ)_/¯
+::/shrug::
+	SendInput, ¯\_(ツ)_/¯
+return
+
+; Facepalm emoji, WhatsApp only
+::/facepalm::
+	SendInput, 🤦🏻‍♂
+return
+
+; Ponder emoji, WhatsApp only
+::/ponder::
+	SendInput, 🤔
+return
+
+; "lol" emoji. Facebook & WhatsApp
+::/rofl::
+	IfWinActive, WhatsApp 
+	{
+		SendInput, 🤣
+	} else {
+		SendInput, 😂
 	}
+return
+
+; Take a wild guess
+::/poop::
+	SendInput, 💩
+return
+
+; Sad face. WhatsApp only
+::/sad::
+	IfWinActive, WhatsApp 
+	{
+		SendInput, ☹
+	}
+return
+
+; Metal. WhatsApp only
+::/metal::
+	SendInput, 🤘🏻😎🤘🏻
+return
+
+; Up to no good :P
+::/:P::
+	SendInput, 😜
 return
