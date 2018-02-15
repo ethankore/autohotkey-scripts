@@ -97,7 +97,9 @@ return
 	IfWinActive, WhatsApp 
 	{
 		SendInput, 🤣
-	} else {
+	}
+	else
+	{
 		SendInput, 😂
 	}
 return
