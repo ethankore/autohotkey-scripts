@@ -5,7 +5,7 @@ Return
 
 ; CTRL+ALT+D - Open desktop directory
 ^!D::
-Run c:\Users\Ard\Desktop
+Run c:\Users\%computername%\Desktop
 Return
 
 ; CTRL+ALT+X - Run Cmder
@@ -58,6 +58,17 @@ return
 	SendInput, ¯\_(ツ)_/¯
 return
 
+; Take a wild guess
+::/poop::
+	SendInput, 💩
+return
+
+
+; Up to no good :P
+::/:P::
+	SendInput, 😜
+return
+
 ; Facepalm emoji, WhatsApp only
 ::/facepalm::
 	SendInput, 🤦🏻‍♂
@@ -66,21 +77,6 @@ return
 ; Ponder emoji, WhatsApp only
 ::/ponder::
 	SendInput, 🤔
-return
-
-; "lol" emoji. Facebook & WhatsApp
-::/rofl::
-	IfWinActive, WhatsApp 
-	{
-		SendInput, 🤣
-	} else {
-		SendInput, 😂
-	}
-return
-
-; Take a wild guess
-::/poop::
-	SendInput, 💩
 return
 
 ; Sad face. WhatsApp only
@@ -96,7 +92,12 @@ return
 	SendInput, 🤘🏻😎🤘🏻
 return
 
-; Up to no good :P
-::/:P::
-	SendInput, 😜
+; "lol" emoji. Facebook & WhatsApp
+::/rofl::
+	IfWinActive, WhatsApp 
+	{
+		SendInput, 🤣
+	} else {
+		SendInput, 😂
+	}
 return
