@@ -1,16 +1,16 @@
 ; CTRL+ALT+L - Open my localhost directory
-^!L:: 
+^!L::
 Run d:\xampp\htdocs
 Return
 
 ; CTRL+ALT+D - Open desktop directory
 ^!D::
-Run c:\Users\%computername%\Desktop
+Run c:\Users\Ard\Desktop
 Return
 
 ; CTRL+ALT+X - Run Cmder
 ^!X::
-Run C:\cmdr\Cmder.exe
+Run C:\cmder\Cmder.exe
 Return
 
 ; --- For keyboards without media controls ---
@@ -44,7 +44,6 @@ SetVolume(whatvolume){
     soundplay, *-1
 }
 
-; Windows 10- Move window to next monitor
 ; Alt+tilde - Move window from current monitor to the next (replace 'Right' with 'Left' to change the direction).
 ; To make it run properly, make sure your keyboard is using the English layout when enabling the script
 !`::
@@ -58,17 +57,6 @@ return
 	SendInput, ¯\_(ツ)_/¯
 return
 
-; Take a wild guess
-::/poop::
-	SendInput, 💩
-return
-
-
-; Up to no good :P
-::/:P::
-	SendInput, 😜
-return
-
 ; Facepalm emoji, WhatsApp only
 ::/facepalm::
 	SendInput, 🤦🏻‍♂
@@ -79,9 +67,24 @@ return
 	SendInput, 🤔
 return
 
+; "lol" emoji. Facebook & WhatsApp
+::/rofl::
+	IfWinActive, WhatsApp
+	{
+		SendInput, 🤣
+	} else {
+		SendInput, 😂
+	}
+return
+
+; Take a wild guess
+::/poop::
+	SendInput, 💩
+return
+
 ; Sad face. WhatsApp only
 ::/sad::
-	IfWinActive, WhatsApp 
+	IfWinActive, WhatsApp
 	{
 		SendInput, ☹
 	}
@@ -92,14 +95,37 @@ return
 	SendInput, 🤘🏻😎🤘🏻
 return
 
-; "lol" emoji. Facebook & WhatsApp
-::/rofl::
-	IfWinActive, WhatsApp 
-	{
-		SendInput, 🤣
-	}
-	else
-	{
-		SendInput, 😂
-	}
+; Up to no good :P
+::/:P::
+	SendInput, 😜
 return
+
+; Switch audio output between speakers and headset
+^!R::
+    if device != 'headset'
+    {
+        Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "0" , , Hide
+        Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "1" , , Hide
+        Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "2" , , Hide
+        device = 'headset'
+    } else {
+        Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "0" , , Hide
+        Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "1" , , Hide
+        Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "2" , , Hide
+        device = 'speakers'
+    }
+Return
+
+; Toggle microphone volume between 0 and 50
+^!E::
+    IfEqual, muted, true
+    {
+        Run "nircmdc.exe" "setsysvolume" "33000" "Headset Microphone" , , Hide
+        muted = false
+        TrayTip, Microphone status, Unmuted
+    } else {
+        Run "nircmdc.exe" "setsysvolume" "0" "Headset Microphone" , , Hide
+        muted = true
+        TrayTip, Microphone status, Muted
+    }
+Return
