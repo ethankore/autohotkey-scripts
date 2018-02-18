@@ -100,6 +100,7 @@ return
 	SendInput, 😜
 return
 
+; Some audio tweaks. Use NirSoft's nircmdc.exe (get from http://www.nirsoft.net/utils/nircmd.html)
 ; Switch audio output between speakers and headset
 ^!R::
     if device != 'headset'
