@@ -1,17 +1,17 @@
 ; CTRL+ALT+L - Open my localhost directory
 ^!L::
 Run d:\xampp\htdocs
-Return
+return
 
 ; CTRL+ALT+D - Open desktop directory
 ^!D::
 Run c:\Users\%computername%\Desktop
-Return
+return
 
 ; CTRL+ALT+X - Run Cmder
 ^!X::
 Run C:\cmder\Cmder.exe
-Return
+return
 
 ; --- For keyboards without media controls ---
 ; CTRL+F3 - Play/Pause music
@@ -115,7 +115,7 @@ return
         Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "2" , , Hide
         device = 'speakers'
     }
-Return
+return
 
 ; Toggle microphone volume between 0 and 50
 ^!E::
@@ -129,4 +129,4 @@ Return
         muted = true
         TrayTip, Microphone status, Muted
     }
-Return
+return
