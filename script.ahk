@@ -136,6 +136,7 @@ return
     }
 return
 
+// A function used to get rid of queued notifications
 HideTrayTip() {
     TrayTip
     if SubStr(A_OSVersion,1,3) = "10." {
