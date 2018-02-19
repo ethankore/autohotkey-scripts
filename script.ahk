@@ -5,7 +5,7 @@ Return
 
 ; CTRL+ALT+D - Open desktop directory
 ^!D::
-Run c:\Users\Ard\Desktop
+Run c:\Users\%computername%\Desktop
 Return
 
 ; CTRL+ALT+X - Run Cmder
