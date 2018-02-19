@@ -101,7 +101,7 @@ return
 return
 
 ; Some audio tweaks. Use NirSoft's nircmdc.exe (get from http://www.nirsoft.net/utils/nircmd.html)
-; Switch audio output between speakers and headset
+; CTRL+ALT+R - Switch audio output between speakers and headset
 ^!R::
     if device != 'headset'
     {
@@ -117,7 +117,7 @@ return
     }
 return
 
-; Toggle microphone volume between 0 and 50
+; CTRL+ALT+E - Toggle microphone volume between 0 and 50
 ^!E::
     IfEqual, muted, true
     {
