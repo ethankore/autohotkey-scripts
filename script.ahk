@@ -54,50 +54,50 @@ return
 
 ; Type /shrug and you'll get ¯\_(ツ)_/¯
 ::/shrug::
-	SendInput, ¯\_(ツ)_/¯
+    SendInput, ¯\_(ツ)_/¯
 return
 
 ; Facepalm emoji, WhatsApp only
 ::/facepalm::
-	SendInput, 🤦🏻‍♂
+    SendInput, 🤦🏻‍♂
 return
 
 ; Ponder emoji, WhatsApp only
 ::/ponder::
-	SendInput, 🤔
+    SendInput, 🤔
 return
 
 ; "lol" emoji. Facebook & WhatsApp
 ::/rofl::
-	IfWinActive, WhatsApp
-	{
-		SendInput, 🤣
-	} else {
-		SendInput, 😂
-	}
+    IfWinActive, WhatsApp
+    {
+        SendInput, 🤣
+    } else {
+        SendInput, 😂
+    }
 return
 
 ; Take a wild guess
 ::/poop::
-	SendInput, 💩
+    SendInput, 💩
 return
 
 ; Sad face. WhatsApp only
 ::/sad::
-	IfWinActive, WhatsApp
-	{
-		SendInput, ☹
-	}
+    IfWinActive, WhatsApp
+    {
+        SendInput, ☹
+    }
 return
 
 ; Metal. WhatsApp only
 ::/metal::
-	SendInput, 🤘🏻😎🤘🏻
+    SendInput, 🤘🏻😎🤘🏻
 return
 
 ; Up to no good :P
 ::/:P::
-	SendInput, 😜
+    SendInput, 😜
 return
 
 ; Some audio tweaks. Use NirSoft's nircmdc.exe (get from http://www.nirsoft.net/utils/nircmd.html)
