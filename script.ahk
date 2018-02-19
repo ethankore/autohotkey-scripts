@@ -109,7 +109,9 @@ return
         Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "1" , , Hide
         Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "2" , , Hide
         device = 'headset'
-    } else {
+    }
+    else
+    {
         Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "0" , , Hide
         Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "1" , , Hide
         Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "2" , , Hide
@@ -119,14 +121,26 @@ return
 
 ; CTRL+ALT+E - Toggle microphone volume between 0 and 50
 ^!E::
+    HideTrayTip()
     IfEqual, muted, true
     {
         Run "nircmdc.exe" "setsysvolume" "33000" "Headset Microphone" , , Hide
         muted = false
         TrayTip, Microphone status, Unmuted
-    } else {
+    } 
+    else
+    {
         Run "nircmdc.exe" "setsysvolume" "0" "Headset Microphone" , , Hide
         muted = true
         TrayTip, Microphone status, Muted
     }
 return
+
+HideTrayTip() {
+    TrayTip
+    if SubStr(A_OSVersion,1,3) = "10." {
+        Menu Tray, NoIcon
+        Sleep 0  
+        Menu Tray, Icon
+    }
+}
