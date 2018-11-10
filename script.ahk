@@ -13,6 +13,9 @@
 	Run %LOCALAPPDATA%\wsltty\bin\mintty.exe --WSL= --configdir="%APPDATA%\wsltty" -~
 	Return
 
+;Alt+F11 = Toggle AlwaysOnTop state of the active window
+^F12::WinSet, AlwaysOnTop, Toggle, A
+
 ; --- For keyboards without media controls ---
 ; CTRL+F3 - Play/Pause music
 ^F3::
@@ -40,8 +43,8 @@
 
 ; function for controlling the volume
 SetVolume(whatvolume){
-    soundset, %whatvolume%
-    soundplay, *-1
+	soundset, %whatvolume%
+	soundplay, *-1
 }
 
 ; Alt+tilde - Move window from current monitor to the next (replace 'Right' with 'Left' to change the direction).
@@ -54,23 +57,23 @@ SetVolume(whatvolume){
 
 ; Ctrl-tilde - show/hide mintty.exe window
 ^`::
-  DetectHiddenWindows, on
-  TerminalName := "ahk_exe mintty.exe"
-  IfWinExist, %TerminalName%
-  {
-    IfWinActive, %TerminalName%
-    {
-      WinHide, %TerminalName%
-      WinActivate ahk_class Shell_TrayWnd
-    }
-    else
-    {
-      WinShow, %TerminalName%
-      WinActivate, %TerminalName%
-    }
-  }
-  DetectHiddenWindows, off
-  return
+	DetectHiddenWindows, on
+	TerminalName := "ahk_exe mintty.exe"
+	IfWinExist, %TerminalName%
+	{
+		IfWinActive, %TerminalName%
+		{
+			WinHide, %TerminalName%
+			WinActivate ahk_class Shell_TrayWnd
+		}
+		else
+		{
+			WinShow, %TerminalName%
+			WinActivate, %TerminalName%
+		}
+	}
+	DetectHiddenWindows, off
+	return
 
 ; Type /shrug and you'll get ¯\_(ツ)_/¯
 ::/shrug::
@@ -123,31 +126,31 @@ SetVolume(whatvolume){
 
 ; Switch audio output between speakers and headset
 ^!R::
-    if device != 'headset'
-    {
-      Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "0" , , Hide
-      Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "1" , , Hide
-      Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "2" , , Hide
-      device = 'headset'
-    } 
-    else
-    {
-      Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "0" , , Hide
-      Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "1" , , Hide
-      Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "2" , , Hide
-      device = 'speakers'
-    }
+	if device != 'headset'
+	{
+		Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "0" , , Hide
+		Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "1" , , Hide
+		Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "2" , , Hide
+		device = 'headset'
+	} 
+	else
+	{
+		Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "0" , , Hide
+		Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "1" , , Hide
+		Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "2" , , Hide
+		device = 'speakers'
+	}
 	Return
 
 ; Toggle microphone volume between 0 and 50
 ^!E::
-  HideTrayTip()
-  IfEqual, muted, true
-  {
-    Run "nircmdc.exe" "setsysvolume" "33000" "Headset Microphone" , , Hide
-    muted = false
-    TrayTip, Microphone status, Unmuted
-  } 
+	HideTrayTip()
+	IfEqual, muted, true
+	{
+		Run "nircmdc.exe" "setsysvolume" "33000" "Headset Microphone" , , Hide
+		muted = false
+		TrayTip, Microphone status, Unmuted
+	} 
 	else 
 	{
 		Run "nircmdc.exe" "setsysvolume" "0" "Headset Microphone" , , Hide
