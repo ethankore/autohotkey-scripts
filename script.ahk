@@ -8,12 +8,12 @@
 	Run c:\Users\Ard\Desktop
 	Return
 
-; CTRL+ALT+X - Run Cmder
+; CTRL+ALT+X - Run wsltty
 ^!X::
 	Run %LOCALAPPDATA%\wsltty\bin\mintty.exe --WSL= --configdir="%APPDATA%\wsltty" -~
 	Return
 
-;Alt+F11 = Toggle AlwaysOnTop state of the active window
+;Alt+F12 = Toggle AlwaysOnTop state of the active window
 ^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; --- For keyboards without media controls ---
