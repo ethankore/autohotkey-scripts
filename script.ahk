@@ -8,12 +8,12 @@
 	Run c:\Users\Ard\Desktop
 	Return
 
-; CTRL+ALT+X - Run Cmder
+; CTRL+ALT+X - Run Alacritty
 ^!X::
 	Run D:\Programs\Alacritty\Alacritty-v0.2.3.exe
 	Return
 
-; Ctrl-tilde - show/hide mintty.exe window
+; Ctrl-tilde - show/hide Alacritty window
 ^`::
 	DetectHiddenWindows, on
 	TerminalName := "ahk_exe Alacritty-v0.2.3.exe"
