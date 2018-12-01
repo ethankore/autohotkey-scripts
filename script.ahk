@@ -8,12 +8,32 @@
 	Run c:\Users\Ard\Desktop
 	Return
 
-; CTRL+ALT+X - Run wsltty
+; CTRL+ALT+X - Run Cmder
 ^!X::
-	Run %LOCALAPPDATA%\wsltty\bin\mintty.exe --WSL= --configdir="%APPDATA%\wsltty" -~
+	Run D:\Programs\Alacritty\Alacritty-v0.2.3.exe
 	Return
 
-; Ctrl+F12 = Toggle AlwaysOnTop state of the active window
+; Ctrl-tilde - show/hide mintty.exe window
+^`::
+	DetectHiddenWindows, on
+	TerminalName := "ahk_exe Alacritty-v0.2.3.exe"
+	IfWinExist, %TerminalName%
+	{
+		IfWinActive, %TerminalName%
+		{
+			WinHide, %TerminalName%
+			WinActivate ahk_class Shell_TrayWnd
+		}
+		else
+		{
+			WinShow, %TerminalName%
+			WinActivate, %TerminalName%
+		}
+	}
+	DetectHiddenWindows, off
+	return
+
+;Alt+F11 = Toggle AlwaysOnTop state of the active window
 ^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; --- For keyboards without media controls ---
@@ -53,26 +73,6 @@ SetVolume(whatvolume){
 	Send {LWin down}{LShift down}{Right down}
 	Sleep 0 ; Yes, this is necessary
 	Send {LWin up}{LShift up}{Right up}
-	return
-
-; Ctrl-tilde - show/hide mintty.exe window
-^`::
-	DetectHiddenWindows, on
-	TerminalName := "ahk_exe mintty.exe"
-	IfWinExist, %TerminalName%
-	{
-		IfWinActive, %TerminalName%
-		{
-			WinHide, %TerminalName%
-			WinActivate ahk_class Shell_TrayWnd
-		}
-		else
-		{
-			WinShow, %TerminalName%
-			WinActivate, %TerminalName%
-		}
-	}
-	DetectHiddenWindows, off
 	return
 
 ; Type /shrug and you'll get ¯\_(ツ)_/¯
