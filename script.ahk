@@ -67,12 +67,17 @@ SetVolume(whatvolume){
 	soundplay, *-1
 }
 
-; Alt+tilde - Move window from current monitor to the next (replace 'Right' with 'Left' to change the direction).
+; Alt+tilde - Move window from current monitor to the next monitor on the right
 ; To make it run properly, make sure your keyboard is using the English layout when enabling the script
 !`::
 	Send {LWin down}{LShift down}{Right down}
-	Sleep 0 ; Yes, this is necessary
 	Send {LWin up}{LShift up}{Right up}
+	return
+
+; Alt+Shift+tilde - Move window from current monitor to the next monitor on the left
+!+`::
+	Send {LWin down}{LShift down}{Left down}
+	Send {LWin up}{LShift up}{Left up}
 	return
 
 ; Type /shrug and you'll get ¯\_(ツ)_/¯
