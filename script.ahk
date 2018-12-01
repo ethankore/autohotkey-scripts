@@ -33,7 +33,7 @@
 	DetectHiddenWindows, off
 	return
 
-;Alt+F11 = Toggle AlwaysOnTop state of the active window
+;Ctrl+F12 = Toggle AlwaysOnTop state of the active window
 ^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; --- For keyboards without media controls ---
