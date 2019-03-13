@@ -1,7 +1,7 @@
 ; ALT+SHIFT+4 - Snipping Tool
 !+4::
 	Run snippingtool
-  Return
+	Return
 
 ; CTRL+ALT+L - Open my localhost directory
 ^!L::
