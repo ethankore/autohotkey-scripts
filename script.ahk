@@ -1,3 +1,8 @@
+; ALT+SHIFT+4 - Snipping Tool
+!+4::
+	Run snippingtool
+  Return
+
 ; CTRL+ALT+L - Open my localhost directory
 ^!L::
 	Run d:\xampp\htdocs
@@ -5,18 +10,18 @@
 
 ; CTRL+ALT+D - Open desktop directory
 ^!D::
-	Run c:\Users\Ard\Desktop
+	Run c:\Users\%A_UserName%\Desktop
 	Return
 
 ; CTRL+ALT+X - Run Alacritty
 ^!X::
-	Run D:\Programs\Alacritty\Alacritty-v0.2.3.exe
+	Run C:\Programs\Alacritty\Alacritty.exe
 	Return
 
 ; Ctrl-tilde - show/hide Alacritty window
 ^`::
 	DetectHiddenWindows, on
-	TerminalName := "ahk_exe Alacritty-v0.2.3.exe"
+	TerminalName := "ahk_exe Alacritty.exe"
 	IfWinExist, %TerminalName%
 	{
 		IfWinActive, %TerminalName%
@@ -128,47 +133,3 @@ SetVolume(whatvolume){
 ::/:P::
 	SendInput, 😜
 	return
-
-; Switch audio output between speakers and headset
-^!R::
-	if device != 'headset'
-	{
-		Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "0" , , Hide
-		Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "1" , , Hide
-		Run "nircmdc.exe" "setdefaultsounddevice" "Headset Earphone" "2" , , Hide
-		device = 'headset'
-	} 
-	else
-	{
-		Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "0" , , Hide
-		Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "1" , , Hide
-		Run "nircmdc.exe" "setdefaultsounddevice" "Speakers" "2" , , Hide
-		device = 'speakers'
-	}
-	Return
-
-; Toggle microphone volume between 0 and 50
-^!E::
-	HideTrayTip()
-	IfEqual, muted, true
-	{
-		Run "nircmdc.exe" "setsysvolume" "33000" "Headset Microphone" , , Hide
-		muted = false
-		TrayTip, Microphone status, Unmuted
-	} 
-	else 
-	{
-		Run "nircmdc.exe" "setsysvolume" "0" "Headset Microphone" , , Hide
-		muted = true
-		TrayTip, Microphone status, Muted
-	}
-	Return
-
-HideTrayTip() {
-	TrayTip
-	if SubStr(A_OSVersion,1,3) = "10." {
-		Menu Tray, NoIcon
-		Sleep 0  
-		Menu Tray, Icon
-	}
-}
