@@ -1,11 +1,15 @@
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+#Warn ; Enable warnings to assist with detecting common errors.
+SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+
+SCRIPT_LOCATION := "D:\script.ahk"
+
+; ALT+R - Reload script
+!R::reload, %SCRIPT_LOCATION%
+
 ; ALT+SHIFT+4 - Snipping Tool
 !+4::
-	Run snippingtool
-	Return
-
-; CTRL+ALT+L - Open my localhost directory
-^!L::
-	Run d:\xampp\htdocs
+	Run %A_WinDir%\explorer.exe ms-screenclip:
 	Return
 
 ; CTRL+ALT+D - Open desktop directory
@@ -15,13 +19,17 @@
 
 ; CTRL+ALT+X - Run Alacritty
 ^!X::
-	Run C:\Programs\Alacritty\Alacritty.exe
+	Run C:\Program Files\Alacritty\alacritty.exe
 	Return
+
+;Ctrl+F12 = Toggle AlwaysOnTop state of the active window
+^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; Ctrl-tilde - show/hide Alacritty window
 ^`::
 	DetectHiddenWindows, on
 	TerminalName := "ahk_exe Alacritty.exe"
+	; TerminalName := "ahk_exe WindowsTerminal.exe"
 	IfWinExist, %TerminalName%
 	{
 		IfWinActive, %TerminalName%
@@ -37,9 +45,6 @@
 	}
 	DetectHiddenWindows, off
 	return
-
-;Ctrl+F12 = Toggle AlwaysOnTop state of the active window
-^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; --- For keyboards without media controls ---
 ; CTRL+F3 - Play/Pause music
@@ -90,6 +95,14 @@ SetVolume(whatvolume){
 	SendInput, ¯\_(ツ)_/¯
 	return
 
+
+::/rtl::
+	SendInput, ‏
+	Return
+
+::/ltr::
+	SendInput, ‎
+	Return
 
 ; Facepalm emoji, WhatsApp only
 ::/facepalm::
