@@ -104,45 +104,7 @@ SetVolume(whatvolume){
 	SendInput, ‎
 	Return
 
-; Facepalm emoji, WhatsApp only
-::/facepalm::
-	SendInput, 🤦🏻‍♂
-	return
-
-; Ponder emoji, WhatsApp only
-::/ponder::
-	SendInput, 🤔
-	return
-
-; "lol" emoji. Facebook & WhatsApp
-::/rofl::
-	IfWinActive, WhatsApp
-	{
-		SendInput, 🤣
-	} else {
-		SendInput, 😂
-	}
-	return
-
 ; Take a wild guess
 ::/poop::
 	SendInput, 💩
-	return
-
-; Sad face. WhatsApp only
-::/sad::
-	IfWinActive, WhatsApp
-	{
-		SendInput, ☹
-	}
-	return
-
-; Metal. WhatsApp only
-::/metal::
-	SendInput, 🤘🏻😎🤘🏻
-	return
-
-; Up to no good :P
-::/:P::
-	SendInput, 😜
 	return
