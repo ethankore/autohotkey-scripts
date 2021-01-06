@@ -2,14 +2,53 @@
 #Warn ; Enable warnings to assist with detecting common errors.
 SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
 
-SCRIPT_LOCATION := "D:\script.ahk"
+WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 
-; ALT+R - Reload script
-!R::reload, %SCRIPT_LOCATION%
+!R::reload
 
-; ALT+SHIFT+4 - Snipping Tool
+!1::
+	Send {Home}
+	SendInput, ‏
+	Return
+
+!S::
+	WinGet, window,, A
+	SetTitleMatchMode, 2
+
+	For index, value in WindowTitles
+		if WinExist(value) {
+			WinActivate, %value%
+			Sleep, 1
+			Send {F11}
+			Sleep, 1
+			WinActivate, ahk_id %window%
+		}
+	Return
+
+!A::
+	SetTitleMatchMode, 2
+
+	For index, value in WindowTitles
+		if WinExist(value) {
+			WinGet, window,, %value%
+			if WinExist("ahk_id" . window) {
+				WinGet, WinState, MinMax
+				if (WinState = -1)
+					WinRestore
+				else
+					WinMinimize
+			}
+		}
+	Return
+
+; ALT+SHIFT+4 - Snip & Sketch
 !+4::
 	Run %A_WinDir%\explorer.exe ms-screenclip:
+	Return
+
+; CTRL+ALT+L - Open my localhost directory
+^!L::
+	Run d:\xampp\htdocs
 	Return
 
 ; CTRL+ALT+D - Open desktop directory
@@ -17,13 +56,11 @@ SCRIPT_LOCATION := "D:\script.ahk"
 	Run c:\Users\%A_UserName%\Desktop
 	Return
 
-; CTRL+ALT+X - Run Alacritty
+; CTRL+ALT+X - Run Alacritty/Windows Terminal
 ^!X::
 	Run C:\Program Files\Alacritty\alacritty.exe
+	; Run C:\Users\tkore2\AppData\Local\Microsoft\WindowsApps\wt.exe
 	Return
-
-;Ctrl+F12 = Toggle AlwaysOnTop state of the active window
-^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; Ctrl-tilde - show/hide Alacritty window
 ^`::
@@ -45,6 +82,9 @@ SCRIPT_LOCATION := "D:\script.ahk"
 	}
 	DetectHiddenWindows, off
 	return
+
+;Ctrl+F12 = Toggle AlwaysOnTop state of the active window
+^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; --- For keyboards without media controls ---
 ; CTRL+F3 - Play/Pause music
@@ -104,7 +144,45 @@ SetVolume(whatvolume){
 	SendInput, ‎
 	Return
 
+; Facepalm emoji, WhatsApp only
+::/facepalm::
+	SendInput, 🤦🏻‍♂
+	return
+
+; Ponder emoji, WhatsApp only
+::/ponder::
+	SendInput, 🤔
+	return
+
+; "lol" emoji. Facebook & WhatsApp
+::/rofl::
+	IfWinActive, WhatsApp
+	{
+		SendInput, 🤣
+	} else {
+		SendInput, 😂
+	}
+	return
+
 ; Take a wild guess
 ::/poop::
 	SendInput, 💩
+	return
+
+; Sad face. WhatsApp only
+::/sad::
+	IfWinActive, WhatsApp
+	{
+		SendInput, ☹
+	}
+	return
+
+; Metal. WhatsApp only
+::/metal::
+	SendInput, 🤘🏻😎🤘🏻
+	return
+
+; Up to no good :P
+::/:P::
+	SendInput, 😜
 	return
