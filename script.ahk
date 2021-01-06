@@ -6,11 +6,13 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 
 !R::reload
 
+; ALT+1 - Insert U+200F (rtl) character at the beginning of a line
 !1::
 	Send {Home}
 	SendInput, ‏
 	Return
 
+; ALT+S - Detect a window which its title is included in WindowTitles, and toggle full screen
 !S::
 	WinGet, window,, A
 	SetTitleMatchMode, 2
@@ -25,6 +27,7 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 		}
 	Return
 
+; ALT+S - Detect a window which its title is included in WindowTitles, and minimized state
 !A::
 	SetTitleMatchMode, 2
 
