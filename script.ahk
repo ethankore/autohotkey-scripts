@@ -27,7 +27,7 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 		}
 	Return
 
-; ALT+S - Detect a window which its title is included in WindowTitles, and minimized state
+; ALT+A - Detect a window which its title is included in WindowTitles, and minimized state
 !A::
 	SetTitleMatchMode, 2
 
