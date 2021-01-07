@@ -12,7 +12,7 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 	SendInput, ‏
 	Return
 
-; ALT+S - Detect a window which its title is included in WindowTitles, and toggle full screen
+; ALT+S - Look for a window with a title matching an item from WindowTitles, and toggle full screen
 !S::
 	WinGet, window,, A
 	SetTitleMatchMode, 2
@@ -27,7 +27,7 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 		}
 	Return
 
-; ALT+A - Detect a window which its title is included in WindowTitles, and minimized state
+; ALT+A - Look for a window with a title matching an item from WindowTitles, and toggle minimized state
 !A::
 	SetTitleMatchMode, 2
 
