@@ -7,10 +7,7 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 !R::reload
 
 ; ALT+1 - Insert U+200F (rtl) character at the beginning of a line
-!1::
-	Send {Home}
-	SendInput, ‏
-	Return
+!1::InsertRtlCharacterAtBeginningOfLine()
 
 ; ALT+S - Look for a window with a title matching an item from WindowTitles, and toggle full screen
 !S::ToggleFullScreen(WindowTitles)
@@ -20,9 +17,6 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 
 ; ALT+SHIFT+4 - Snip & Sketch
 !+4::Run %A_WinDir%\explorer.exe ms-screenclip:
-
-; CTRL+ALT+L - Open my localhost directory
-^!L::Run d:\xampp\htdocs
 
 ; CTRL+ALT+D - Open desktop directory
 ^!D::Run c:\Users\%A_UserName%\Desktop
@@ -36,7 +30,6 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 ;Ctrl+F12 = Toggle AlwaysOnTop state of the active window
 ^F12::WinSet, AlwaysOnTop, Toggle, A
 
-; --- For keyboards without media controls ---
 ; CTRL+F3 - Play/Pause music
 ^F3::Send {Media_Play_Pause}
 
@@ -149,4 +142,9 @@ MoveWindowToRightMonitor() {
 SetVolume(whatvolume){
 	soundset, %whatvolume%
 	soundplay, *-1
+}
+
+InsertRtlCharacterAtBeginningOfLine() {
+  Send {Home}
+	SendInput, ‏
 }
