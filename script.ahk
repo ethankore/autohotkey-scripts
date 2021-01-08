@@ -55,12 +55,6 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 ; CTRL+F1 - Mute
 ^F1::Send {VOLUME_MUTE}
 
-; function for controlling the volume
-SetVolume(whatvolume){
-	soundset, %whatvolume%
-	soundplay, *-1
-}
-
 ; Alt+tilde - Move window from current monitor to the next monitor on the right
 ; To make it run properly, make sure your keyboard is using the English layout when enabling the script
 !`::MoveWindowToRightMonitor()
@@ -150,4 +144,9 @@ MoveWindowToLeftMonitor() {
 MoveWindowToRightMonitor() {
   Send {LWin down}{LShift down}{Right down}
 	Send {LWin up}{LShift up}{Right up}
+}
+
+SetVolume(whatvolume){
+	soundset, %whatvolume%
+	soundplay, *-1
 }
