@@ -126,7 +126,6 @@ ToggleMinimizeAndRestore(WindowTitlesArray) {
 					WinMinimize
 			}
 		}
-	Return
 }
 
 MoveWindowToLeftMonitor() {
