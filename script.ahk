@@ -85,11 +85,15 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 ToggleWindowVisibility(windowClass) {
   DetectHiddenWindows, on
 
-	IfWinExist, %windowClass% {
-		IfWinActive, %windowClass% {
+	IfWinExist, %windowClass%
+	{
+		IfWinActive, %windowClass%
+		{
 			WinHide, %windowClass%
 			WinActivate ahk_class Shell_TrayWnd
-		} else {
+		}
+		else
+		{
 			WinShow, %windowClass%
 			WinActivate, %windowClass%
 		}
