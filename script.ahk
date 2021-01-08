@@ -1,6 +1,6 @@
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn ; Enable warnings to assist with detecting common errors.
-SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+SendMode Input ; Recommended for new scripts due to its speed and reliability.
 
 WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 
