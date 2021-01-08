@@ -12,7 +12,7 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 ; ALT+S - Look for a window with a title matching an item from WindowTitles, and toggle full screen
 !S::ToggleFullScreen(WindowTitles)
 	
-; ALT+A - Look for a window with a title matching an item from WindowTitles, and minimized state
+; ALT+A - Look for a window with a title matching an item from WindowTitles, and toggle minimized state
 !A::ToggleMinimizeAndRestore(WindowTitles)
 
 ; ALT+SHIFT+4 - Snip & Sketch
@@ -27,7 +27,7 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 ; Ctrl-tilde - show/hide Alacritty window
 ^`::ToggleWindowVisibility("ahk_exe Alacritty.exe")
 
-;Ctrl+F12 = Toggle AlwaysOnTop state of the active window
+;Ctrl+F12 - Toggle AlwaysOnTop state of the active window
 ^F12::WinSet, AlwaysOnTop, Toggle, A
 
 ; CTRL+F3 - Play/Pause music
@@ -95,13 +95,13 @@ ToggleWindowVisibility(windowClass) {
 }
 
 ; Look for a window with a title matching an item from given array, and toggle full screen
-ToggleFullScreen(WindowsArr) {
+ToggleFullScreen(WindowTitlesArray) {
   WinGet, activeWindow,, A
 	SetTitleMatchMode, 2
 
-	For currentIndex, windowName in WindowsArr {
-		if WinExist(windowName) {
-			WinActivate, %windowName%
+	For i, WindowName in WindowTitlesArray {
+		if WinExist(WindowName) {
+			WinActivate, %WindowName%
 			Sleep, 1
 			Send {F11}
 			Sleep, 1
@@ -112,12 +112,12 @@ ToggleFullScreen(WindowsArr) {
 }
 
 ; Look for a window with a title matching an item from given array, and toggle its minimized state
-ToggleMinimizeAndRestore(windowTitlesArray) {
+ToggleMinimizeAndRestore(WindowTitlesArray) {
   SetTitleMatchMode, 2
 
-	For i, winTitle in windowTitlesArray
-		if WinExist(winTitle) {
-			WinGet, window,, %winTitle%
+	For i, WinTitle in WindowTitlesArray
+		if WinExist(WinTitle) {
+			WinGet, window,, %WinTitle%
 			if WinExist("ahk_id" . window) {
 				WinGet, WinState, MinMax
 				if (WinState = -1)
