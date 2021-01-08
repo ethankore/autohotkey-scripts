@@ -4,6 +4,7 @@ SendMode Input ; Recommended for new scripts due to its speed and reliability.
 
 WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 
+; ALT+R - Reload script
 !R::reload
 
 ; ALT+1 - Insert U+200F (rtl) character at the beginning of a line
