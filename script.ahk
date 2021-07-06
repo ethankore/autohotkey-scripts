@@ -2,7 +2,17 @@
 #Warn ; Enable warnings to assist with detecting common errors.
 SendMode Input ; Recommended for new scripts due to its speed and reliability.
 
-WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
+WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12", "חדשות 13", "המסך המפוצל", "VLC"]
+ProcessNamesToToggleMuteOn := ["chrome.exe", "brave.exe"]
+SoundUpAndDownVolumeStep = 10
+
+; Increase or decrease volume using a specific step
+; Originally written to make the Das Keyboard Professional volume knob less annoying, making it behave like it does on MacOS
+$Volume_Up::IncreaseVolumeByStep(SoundUpAndDownVolumeStep)
+$Volume_Down::DecreaseVolumeByStep(SoundUpAndDownVolumeStep)
+
+; CTRL+F2 - Mute/unmute processes by filenames
+^F2::ToggleMuteByProcessName(ProcessNamesToToggleMuteOn)
 
 ; ALT+R - Reload script
 !R::reload
@@ -12,9 +22,9 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 
 ; ALT+S - Look for a window with a title matching an item from WindowTitles, and toggle full screen
 !S::ToggleFullScreen(WindowTitles)
-	
+
 ; ALT+A - Look for a window with a title matching an item from WindowTitles, and toggle minimized state
-!A::ToggleMinimizeAndRestore(WindowTitles)
+!a::ToggleMinimizeAndRestore(WindowTitles)
 
 ; ALT+SHIFT+4 - Snip & Sketch
 !+4::Run %A_WinDir%\explorer.exe ms-screenclip:
@@ -58,13 +68,17 @@ WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12"]
 
 :*:/shrug::¯\_(ツ)_/¯
 
+:*::id::200705895
+
 :*:/rtl::‏
 
 :*:/ltr::‎
 
 :*::facepalm::🤦🏻‍♂
 
-:*::think::🤔
+:*::thi::🤔
+
+:*::shrug::🤷‍
 
 :*::rofl::🤣
 
@@ -139,12 +153,41 @@ MoveWindowToRightMonitor() {
 	Send {LWin up}{LShift up}{Right up}
 }
 
-SetVolume(whatvolume){
-	soundset, %whatvolume%
+SetVolume(newVolume){
+	soundset, %newVolume%
 	soundplay, *-1
 }
 
 InsertRtlCharacterAtBeginningOfLine() {
   Send {Home}
 	SendInput, ‏
+}
+
+ToggleMuteByProcessName(processNames) {
+  static areProcessesMuted = false
+
+  for index, processName in processNames {
+    If (areProcessesMuted = true) {
+      Run d:\ahk\nircmd.exe setappvolume %processName% 1
+    }
+    Else {
+      Run d:\ahk\nircmd.exe setappvolume %processName% 0
+    }
+  }
+
+  areProcessesMuted := !areProcessesMuted
+}
+
+IncreaseVolumeByStep(step) {
+  SoundGet, volume
+  Send {Volume_Up}
+  SoundSet, volume + step
+  Return
+}
+
+DecreaseVolumeByStep(step) {
+  SoundGet, volume
+  Send {Volume_Down}
+  SoundSet, volume - step
+  Return
 }
