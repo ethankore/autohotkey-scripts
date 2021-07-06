@@ -2,7 +2,7 @@
 #Warn ; Enable warnings to assist with detecting common errors.
 SendMode Input ; Recommended for new scripts due to its speed and reliability.
 
-WindowTitles := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12", "חדשות 13", "המסך המפוצל", "VLC"]
+WindowTitlesToToggleMinimizedAndFullScreenStates := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12", "חדשות 13", "המסך המפוצל", "VLC"]
 ProcessNamesToToggleMuteOn := ["chrome.exe", "brave.exe"]
 SoundUpAndDownVolumeStep = 10
 
@@ -21,10 +21,10 @@ $Volume_Down::DecreaseVolumeByStep(SoundUpAndDownVolumeStep)
 !1::InsertRtlCharacterAtBeginningOfLine()
 
 ; ALT+S - Look for a window with a title matching an item from WindowTitles, and toggle full screen
-!S::ToggleFullScreen(WindowTitles)
+!S::ToggleFullScreen(WindowTitlesToToggleMinimizedAndFullScreenStates)
 
 ; ALT+A - Look for a window with a title matching an item from WindowTitles, and toggle minimized state
-!a::ToggleMinimizeAndRestore(WindowTitles)
+!a::ToggleMinimizeAndRestore(WindowTitlesToToggleMinimizedAndFullScreenStates)
 
 ; ALT+SHIFT+4 - Snip & Sketch
 !+4::Run %A_WinDir%\explorer.exe ms-screenclip:
