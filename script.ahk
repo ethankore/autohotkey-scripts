@@ -68,8 +68,6 @@ $Volume_Down::DecreaseVolumeByStep(SoundUpAndDownVolumeStep)
 
 :*:/shrug::¯\_(ツ)_/¯
 
-:*::id::200705895
-
 :*:/rtl::‏
 
 :*:/ltr::‎
