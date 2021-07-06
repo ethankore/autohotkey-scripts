@@ -168,10 +168,10 @@ ToggleMuteByProcessName(processNames) {
 
   for index, processName in processNames {
     If (areProcessesMuted = true) {
-      Run d:\ahk\nircmd.exe setappvolume %processName% 1
+      Run %A_ScriptDir%\nircmd.exe setappvolume %processName% 1
     }
     Else {
-      Run d:\ahk\nircmd.exe setappvolume %processName% 0
+      Run %A_ScriptDir%\nircmd.exe setappvolume %processName% 0
     }
   }
 
