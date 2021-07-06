@@ -154,8 +154,8 @@ MoveWindowToRightMonitor() {
 }
 
 SetVolume(newVolume){
-	soundset, %newVolume%
-	soundplay, *-1
+	SoundSet, %newVolume%
+	SoundPlay, *-1
 }
 
 InsertRtlCharacterAtBeginningOfLine() {
