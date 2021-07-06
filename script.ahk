@@ -20,10 +20,10 @@ $Volume_Down::DecreaseVolumeByStep(SoundUpAndDownVolumeStep)
 ; ALT+1 - Insert U+200F (rtl) character at the beginning of a line
 !1::InsertRtlCharacterAtBeginningOfLine()
 
-; ALT+S - Look for a window with a title matching an item from WindowTitles, and toggle full screen
+; ALT+S - Look for a window with a title matching a window title, and toggle full screen
 !S::ToggleFullScreen(WindowTitlesToToggleMinimizedAndFullScreenStates)
 
-; ALT+A - Look for a window with a title matching an item from WindowTitles, and toggle minimized state
+; ALT+A - Look for a window with a title matching a window title, and toggle minimized state
 !a::ToggleMinimizeAndRestore(WindowTitlesToToggleMinimizedAndFullScreenStates)
 
 ; ALT+SHIFT+4 - Snip & Sketch
