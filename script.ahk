@@ -182,12 +182,10 @@ IncreaseVolumeByStep(step) {
   SoundGet, volume
   Send {Volume_Up}
   SoundSet, volume + step
-  Return
 }
 
 DecreaseVolumeByStep(step) {
   SoundGet, volume
   Send {Volume_Down}
   SoundSet, volume - step
-  Return
 }
