@@ -1,7 +1,7 @@
 # autohotkey-scripts
 My AutoHotkey scripts
 
-# Office issue and how to fix it
+## Office issue and how to fix it
 Microsoft has a set of key bindings that are preconfigured and that might open unrelated Office windows.
 
 You can fix this issue by running this from an elevated command line window -
