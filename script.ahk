@@ -1,10 +1,14 @@
+SetBatchLines, -1
+#MaxThreadsPerHotkey 2
+
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
-#Warn ; Enable warnings to assist with detecting common errors.
+; #Warn ; Enable warnings to assist with detecting common errors.
 SendMode Input ; Recommended for new scripts due to its speed and reliability.
 
-WindowTitlesToToggleMinimizedAndFullScreenStates := ["Seinfeld", "13tv.co.il", "ערוץ 13", "ערוץ 12", "חדשות 13", "המסך המפוצל", "VLC"]
+WindowTitlesToToggleMinimizedAndFullScreenStates := ["Seinfeld", "13tv.co.il", "TTV"]
 ProcessNamesToToggleMuteOn := ["chrome.exe", "brave.exe"]
 SoundUpAndDownVolumeStep = 10
+global SpamToggle := false
 
 ; Increase or decrease volume using a specific step
 ; Originally written to make the Das Keyboard Professional volume knob less annoying, making it behave like it does on MacOS
@@ -19,6 +23,8 @@ $Volume_Down::DecreaseVolumeByStep(SoundUpAndDownVolumeStep)
 
 ; ALT+1 - Insert U+200F (rtl) character at the beginning of a line
 !1::InsertRtlCharacterAtBeginningOfLine()
+
+!2::InsertLtrCharAtBeginningOfLine()
 
 ; ALT+S - Look for a window with a title matching a window title, and toggle full screen
 !S::ToggleFullScreen(WindowTitlesToToggleMinimizedAndFullScreenStates)
@@ -43,6 +49,12 @@ $Volume_Down::DecreaseVolumeByStep(SoundUpAndDownVolumeStep)
 
 ; CTRL+F3 - Play/Pause music
 ^F3::Send {Media_Play_Pause}
+
+; CTRL+F6 - Toggle left click spam
+^F6::ToggleSpamLeftClick()
+
+; CTRL+F7 - Toggle right click spam
+^F7::ToggleSpamRightClick()
 
 ; CTRL+F8 - Previous track
 ^F8::Send {Media_Prev}
@@ -161,6 +173,11 @@ InsertRtlCharacterAtBeginningOfLine() {
 	SendInput, ‏
 }
 
+InsertLtrCharAtBeginningOfLine() {
+  Send {Home}
+	SendInput, ‎
+}
+
 ToggleMuteByProcessName(processNames) {
   static areProcessesMuted = false
 
@@ -186,4 +203,36 @@ DecreaseVolumeByStep(step) {
   SoundGet, volume
   Send {Volume_Down}
   SoundSet, volume - step
+}
+
+ToggleSpamRightClick() {
+  global Toggle
+  Toggle := !Toggle
+  
+  if (Toggle) {
+      SetTimer, SpamRightClickLabel, 10
+  } else {
+      SetTimer, SpamRightClickLabel, Off
+  }
+}
+
+SpamRightClickLabel() {
+  Click, Right
+  Sleep, 0.1
+}
+
+ToggleSpamLeftClick() {
+  global Toggle
+  Toggle := !Toggle
+  
+  if (Toggle) {
+      SetTimer, SpamLeftClickLabel, 10
+  } else {
+      SetTimer, SpamLeftClickLabel, Off
+  }
+}
+
+SpamLeftClickLabel() {
+  Click, Left
+  Sleep, 0.1
 }
