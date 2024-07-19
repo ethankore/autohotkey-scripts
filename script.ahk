@@ -119,21 +119,24 @@ ToggleWindowVisibility(windowClass) {
 	DetectHiddenWindows, off
 }
 
-; Look for a window with a title matching an item from given array, and toggle full screen
-ToggleFullScreen(WindowTitlesArray) {
-  WinGet, activeWindow,, A
-	SetTitleMatchMode, 2
-
-	For i, WindowName in WindowTitlesArray {
-		if WinExist(WindowName) {
-			WinActivate, %WindowName%
-			Sleep, 1
-			Send {F11}
-			Sleep, 1
-			WinActivate, ahk_id %activeWindow%
-		}
-
-  }
+; Look for a window with a title matching an item from given array, and toggle its minimized state
+ToggleMinimizeAndRestore(WindowTitlesArray) {
+    SetTitleMatchMode, 2
+    
+    For i, WinTitle in WindowTitlesArray {
+        WinGet, windowList, List, %WinTitle%
+        
+        Loop, %windowList% {
+            window := windowList%A_Index%
+            if WinExist("ahk_id" . window) {
+                WinGet, WinState, MinMax, ahk_id %window%
+                if (WinState = -1)
+                    WinRestore, ahk_id %window%
+                else
+                    WinMinimize, ahk_id %window%
+            }
+        }
+    }
 }
 
 ; Look for a window with a title matching an item from given array, and toggle its minimized state
